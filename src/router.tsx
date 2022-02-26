@@ -1,19 +1,17 @@
 import { FC } from "react";
-import { Switch, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { IndexPage } from "./pages";
-import { ExamplePage } from "./pages/example";
+import { PopupPage } from "./pages/popup";
 
 export const Router: FC = () => {
 	return (
 		<HashRouter>
-			<Switch>
-				<Route exact path="/">
-					<IndexPage />
+			<Routes>
+				<Route path="/">
+					<Route index element={<IndexPage />} />
+					<Route path="popup" element={<PopupPage />} />
 				</Route>
-				<Route exact path="/example">
-					<ExamplePage />
-				</Route>
-			</Switch>
+			</Routes>
 		</HashRouter>
 	);
 };

@@ -1,6 +1,6 @@
 {
-	"short_name": "Electron - React Template",
-	"name": "Create Electron App With React",
+	"short_name": "React App",
+	"name": "Create React App Sample",
 	"icons": [
 		{
 			"src": "favicon.ico",

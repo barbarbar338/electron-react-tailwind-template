@@ -1,66 +1,64 @@
 {
-	"name": "electron-react-starter-template",
-	"version": "0.1.0",
-	"private": true,
+	"name": "electron-react-tailwind-template",
 	"author": {
 		"email": "demirci.baris38@gmail.com",
 		"name": "Barış DEMİRCİ",
-		"url": "https://bariscodes.me/"
+		"url": "https://338.rocks"
 	},
-	"description": "⚛ Electron app template with react and router.",
-	"license": "MIT",
+	"description": "Electron app template with React and Tailwind CSS",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/barbarbar338/electron-react-template"
+		"url": "https://github.com/barbarbar338/electron-react-tailwind-template"
 	},
+	"license": "GPL-3.0",
+	"version": "1.0.0",
+	"private": true,
 	"devDependencies": {
-		"@types/node": "^12.0.0",
-		"@types/react": "^17.0.0",
-		"@types/react-dom": "^17.0.0",
-		"@types/react-router-dom": "^5.1.7",
-		"concurrently": "^6.0.1",
+		"@types/node": "^17.0.21",
+		"@types/react": "^17.0.39",
+		"@types/react-dom": "^17.0.11",
+		"@types/react-router-dom": "^5.3.3",
+		"autoprefixer": "^10.4.2",
+		"concurrently": "^7.0.0",
 		"cross-env": "^7.0.3",
-		"electron": "^12.0.2",
-		"electron-builder": "^22.10.5",
-		"react-scripts": "4.0.3",
-		"typescript": "^4.1.2",
-		"wait-on": "^5.3.0"
+		"electron": "^17.1.0",
+		"electron-builder": "^22.14.13",
+		"postcss": "^8.4.7",
+		"prettier": "^2.5.1",
+		"react-scripts": "^5.0.0",
+		"rimraf": "^3.0.2",
+		"tailwindcss": "3.0.23",
+		"typescript": "^4.5.5",
+		"wait-on": "^6.0.1"
 	},
 	"dependencies": {
-		"@electron/remote": "^1.1.0",
+		"@electron/remote": "^2.0.5",
+		"auto-launch": "^5.0.5",
 		"electron-is-dev": "^2.0.0",
+		"electron-reloader": "^1.2.3",
 		"electron-squirrel-startup": "^1.0.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
-		"react-router-dom": "^5.2.0"
+		"react-icons": "^4.3.1",
+		"react-router-dom": "^6.2.1",
+		"react-toastify": "^8.2.0",
+		"react-use": "^17.3.2"
 	},
 	"main": "public/main.js",
 	"homepage": "./",
 	"scripts": {
+		"prebuild": "rimraf build && rimraf dist",
 		"react:build": "react-scripts build",
 		"react:dev": "react-scripts start",
 		"electron:build": "electron-builder -c.extraMetadata.main=build/main.js",
-		"electron:dev": "wait-on tcp:3000 && electron .",
+		"electron:dev": "electron .",
 		"build": "npm run react:build && npm run electron:build",
-		"dev": "concurrently -k \"cross-env BROWSER=none npm run react:dev\" \"npm run electron:dev\""
-	},
-	"build": {
-		"extends": null,
-		"appId": "com.example.app",
-		"files": [
-			"dist/**/*",
-			"build/**/*",
-			"node_modules/**/*",
-			"package.json"
-		],
-		"directories": {
-			"buildResources": "assets"
-		}
+		"dev": "concurrently -k \"cross-env BROWSER=none npm run react:dev\" \"npm run electron:dev\"",
+		"format": "prettier --write ."
 	},
 	"eslintConfig": {
 		"extends": [
-			"react-app",
-			"react-app/jest"
+			"react-app"
 		]
 	},
 	"browserslist": {
@@ -74,5 +72,20 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"build": {
+		"extends": null,
+		"appId": "com.example.app",
+		"files": [
+			"dist/**/*",
+			"build/**/*",
+			"node_modules/**/*",
+			"package.json",
+			"build/icon.*"
+		],
+		"directories": {
+			"buildResources": "assets"
+		},
+		"icon": "./build/icon.ico"
 	}
 }
