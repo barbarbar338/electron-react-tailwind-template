@@ -1,91 +1,76 @@
 {
-	"name": "electron-react-tailwind-template",
-	"author": {
-		"email": "demirci.baris38@gmail.com",
-		"name": "Barış DEMİRCİ",
-		"url": "https://338.rocks"
-	},
-	"description": "Electron app template with React and Tailwind CSS",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/barbarbar338/electron-react-tailwind-template"
-	},
-	"license": "GPL-3.0",
-	"version": "1.0.0",
-	"private": true,
-	"devDependencies": {
-		"@types/node": "^17.0.21",
-		"@types/react": "^17.0.39",
-		"@types/react-dom": "^17.0.11",
-		"@types/react-router-dom": "^5.3.3",
-		"autoprefixer": "^10.4.2",
-		"concurrently": "^7.0.0",
-		"cross-env": "^7.0.3",
-		"electron": "^17.1.0",
-		"electron-builder": "^22.14.13",
-		"postcss": "^8.4.7",
-		"prettier": "^2.5.1",
-		"react-scripts": "^5.0.0",
-		"rimraf": "^3.0.2",
-		"tailwindcss": "3.0.23",
-		"typescript": "^4.5.5",
-		"wait-on": "^6.0.1"
-	},
-	"dependencies": {
-		"@electron/remote": "^2.0.5",
-		"auto-launch": "^5.0.5",
-		"electron-is-dev": "^2.0.0",
-		"electron-reloader": "^1.2.3",
-		"electron-squirrel-startup": "^1.0.0",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-icons": "^4.3.1",
-		"react-router-dom": "^6.2.1",
-		"react-toastify": "^8.2.0",
-		"react-use": "^17.3.2"
-	},
-	"main": "public/main.js",
-	"homepage": "./",
-	"scripts": {
-		"prebuild": "rimraf build && rimraf dist",
-		"react:build": "react-scripts build",
-		"react:dev": "react-scripts start",
-		"electron:build": "electron-builder -c.extraMetadata.main=build/main.js",
-		"electron:dev": "electron .",
-		"build": "npm run react:build && npm run electron:build",
-		"dev": "concurrently -k \"cross-env BROWSER=none npm run react:dev\" \"npm run electron:dev\"",
-		"format": "prettier --write ."
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"build": {
-		"extends": null,
-		"appId": "com.example.app",
-		"files": [
-			"dist/**/*",
-			"build/**/*",
-			"node_modules/**/*",
-			"package.json",
-			"build/icon.*"
-		],
-		"directories": {
-			"buildResources": "assets"
-		},
-		"icon": "./build/icon.ico"
-	}
+    "name": "electron-react-tailwind-template",
+    "author": {
+        "email": "demirci.baris38@gmail.com",
+        "name": "Barış DEMİRCİ",
+        "url": "https://338.rocks"
+    },
+    "description": "Electron app template with React and Tailwind CSS",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/barbarbar338/electron-react-tailwind-template"
+    },
+    "license": "GPL-3.0",
+    "version": "1.0.1",
+    "private": true,
+    "devDependencies": {
+        "@types/node": "^17.0.44",
+        "@types/react": "^18.0.12",
+        "@types/react-dom": "^18.0.5",
+        "@types/react-router-dom": "^5.3.3",
+        "autoprefixer": "^10.4.7",
+        "cross-env": "^7.0.3",
+        "electron": "^19.0.4",
+        "electron-builder": "^23.0.3",
+        "postcss": "^8.4.14",
+        "prettier": "^2.7.0",
+        "react-scripts": "^5.0.1",
+        "rimraf": "^3.0.2",
+        "tailwindcss": "3.1.3",
+        "typescript": "^4.7.3",
+        "wait-on": "^6.0.1"
+    },
+    "dependencies": {
+        "@electron/remote": "^2.0.8",
+        "auto-launch": "^5.0.5",
+        "electron-is-dev": "^2.0.0",
+        "electron-reloader": "^1.2.3",
+        "electron-squirrel-startup": "^1.0.0",
+        "electron-updater": "^5.0.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.4.0",
+        "react-router-dom": "^6.3.0",
+        "react-toastify": "^9.0.4",
+        "react-use": "^17.4.0"
+    },
+    "homepage": "./",
+    "scripts": {
+        "prebuild": "rimraf build && rimraf dist",
+        "react:build": "react-scripts build",
+        "react:dev": "cross-env BROWSER=none react-scripts start",
+        "electron:build": "electron-builder build --win --publish never",
+        "electron:deploy": "electron-builder build --win --publish always",
+        "electron:dev": "electron .",
+        "build": "npm run react:build && npm run electron:build",
+        "deploy": "npm run react:build && npm run electron:deploy",
+        "format": "prettier --write ."
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

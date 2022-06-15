@@ -1,0 +1,19 @@
+appId: com.example.ElectronTailwindReactTemplate
+
+publish:
+    provider: github
+    token: YOUR_GITHUB_TOKEN
+
+files:
+    [
+        "dist/**/*",
+        "build/**/*",
+        "node_modules/**/*",
+        "package.json",
+        "build/icon.*",
+    ]
+
+directories:
+    buildResources: assets
+
+icon: ./build/icon.ico

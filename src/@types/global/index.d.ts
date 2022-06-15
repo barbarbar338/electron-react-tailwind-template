@@ -1,5 +1,5 @@
 export {};
 
 declare global {
-	namespace ReactTailwindTemplate {}
+    namespace ReactTailwindTemplate {}
 }
