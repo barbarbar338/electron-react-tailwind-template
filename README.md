@@ -18,7 +18,7 @@ A very simple and functional template for you to use Electron, React and Tailwin
 
 # 🧦 Contributing
 
-Fell free to use GitHub's features.
+Feel free to use GitHub's features.
 
 # 📄 Copyrights
 

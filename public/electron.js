@@ -9,46 +9,48 @@ const remote = require("@electron/remote/main");
 const config = require("./utils/config");
 
 if (config.isDev) require("electron-reloader")(module);
-if (require("electron-squirrel-startup")) app.quit();
 
 remote.initialize();
 
-const autoStart = new AutoLaunch({
-    name: config.appName,
-});
-if (!config.isDev) autoStart.enable();
+if (!config.isDev) {
+	const autoStart = new AutoLaunch({
+		name: config.appName,
+	});
+	autoStart.enable();
+}
 
 app.on("ready", async () => {
-    config.mainWindow = await createMainWindow();
-    config.tray = createTray();
-    config.popupWindow = await createPopupWindow();
-    showNotification(
-        config.appName,
-        "Application running on background! See application tray.",
-    );
+	config.mainWindow = await createMainWindow();
+	config.tray = createTray();
+	config.popupWindow = await createPopupWindow();
+
+	showNotification(
+		config.appName,
+		"Application running on background! See application tray.",
+	);
 });
 
 app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") app.quit();
+	if (process.platform !== "darwin") app.quit();
 });
 
 app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0)
-        config.mainWindow = createMainWindow();
+	if (BrowserWindow.getAllWindows().length === 0)
+		config.mainWindow = createMainWindow();
 });
 
 ipcMain.on("app_version", (event) => {
-    event.sender.send("app_version", { version: app.getVersion() });
+	event.sender.send("app_version", { version: app.getVersion() });
 });
 
 autoUpdater.on("update-available", () => {
-    config.mainWindow.webContents.send("update_available");
+	config.mainWindow.webContents.send("update_available");
 });
 
 autoUpdater.on("update-downloaded", () => {
-    config.mainWindow.webContents.send("update_downloaded");
+	config.mainWindow.webContents.send("update_downloaded");
 });
 
 ipcMain.on("restart_app", () => {
-    autoUpdater.quitAndInstall();
+	autoUpdater.quitAndInstall();
 });
