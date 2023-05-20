@@ -19,6 +19,7 @@
 		"@types/react-dom": "^18.0.9",
 		"@types/react-router-dom": "^5.3.3",
 		"autoprefixer": "^10.4.13",
+		"concurrently": "^8.0.1",
 		"cross-env": "^7.0.3",
 		"electron": "^22.0.0",
 		"electron-builder": "^23.6.0",
@@ -47,6 +48,8 @@
 	"homepage": "./",
 	"main": "public/electron.js",
 	"scripts": {
+		"dev": "concurrently \"npm run react:dev\" \"npm run electron:wait\"",
+		"electron:wait": "wait-on tcp:3000 && npm run electron:dev",
 		"prebuild": "rimraf build && rimraf dist",
 		"react:build": "react-scripts build",
 		"react:dev": "cross-env BROWSER=none react-scripts start",
