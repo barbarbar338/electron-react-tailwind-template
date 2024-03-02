@@ -9,7 +9,7 @@ A very simple and functional template for you to use Electron, React and Tailwin
 -   Use TailwindCSS for styling
 -   Basic functions are ready to use such as creating tray icon, creating notifications etc.
 
-# 🤓 Insatllation
+# 🤓 Installation
 
 -   Clone repo
 -   Run `npm install` or `yarn`
