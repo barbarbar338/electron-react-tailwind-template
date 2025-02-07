@@ -1,13 +1,14 @@
-const { app, Tray, Menu, shell } = require("electron");
-const { showNotification } = require("./showNotification");
-const config = require("./config");
+import { app, Menu, shell, Tray } from "electron";
+import { config } from "./config.js";
+import { showNotification } from "./showNotification.js";
 
-exports.createTray = () => {
+export const createTray = () => {
 	const t = new Tray(config.icon);
 
 	t.setToolTip(config.appName);
 	t.setContextMenu(
 		Menu.buildFromTemplate([
+			// Customize the tray menu here
 			{
 				label: "Show App",
 				click: () => {

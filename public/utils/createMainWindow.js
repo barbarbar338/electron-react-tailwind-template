@@ -1,10 +1,10 @@
-const { BrowserWindow } = require("electron");
-const { join } = require("path");
-const { autoUpdater } = require("electron-updater");
-const remote = require("@electron/remote/main");
-const config = require("./config");
+import remote from "@electron/remote/main/index.js";
+import { BrowserWindow } from "electron";
+import electronUpdater from "electron-updater";
+import { join } from "path";
+import { config } from "./config.js";
 
-exports.createMainWindow = async () => {
+export const createMainWindow = async () => {
 	const window = new BrowserWindow({
 		width: 800,
 		height: 600,
@@ -28,7 +28,7 @@ exports.createMainWindow = async () => {
 	);
 
 	window.once("ready-to-show", () => {
-		autoUpdater.checkForUpdatesAndNotify();
+		electronUpdater.autoUpdater.checkForUpdatesAndNotify();
 	});
 
 	window.on("close", (e) => {

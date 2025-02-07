@@ -1,9 +1,9 @@
-const { BrowserWindow } = require("electron");
-const { join } = require("path");
-const config = require("./config");
-const remote = require("@electron/remote/main");
+import remote from "@electron/remote/main/index.js";
+import { BrowserWindow } from "electron";
+import { join } from "path";
+import { config } from "./config.js";
 
-exports.createPopupWindow = async () => {
+export const createPopupWindow = async () => {
 	const window = new BrowserWindow({
 		width: 260,
 		height: 360,

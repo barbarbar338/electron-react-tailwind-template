@@ -1,6 +1,6 @@
-const { Notification } = require("electron");
+import { Notification } from "electron";
 
-exports.showNotification = (title, body) => {
+export const showNotification = (title, body) => {
 	const notification = new Notification({
 		title,
 		body,

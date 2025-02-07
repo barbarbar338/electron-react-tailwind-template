@@ -1,14 +1,12 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
-const { autoUpdater } = require("electron-updater");
-const { createTray } = require("./utils/createTray");
-const { createMainWindow } = require("./utils/createMainWindow");
-const { createPopupWindow } = require("./utils/createPopupWindow");
-const { showNotification } = require("./utils/showNotification");
-const AutoLaunch = require("auto-launch");
-const remote = require("@electron/remote/main");
-const config = require("./utils/config");
-
-if (config.isDev) require("electron-reloader")(module);
+import remote from "@electron/remote/main/index.js";
+import AutoLaunch from "auto-launch";
+import { app, BrowserWindow, ipcMain } from "electron";
+import electronUpdater from "electron-updater";
+import { config } from "./utils/config.js";
+import { createMainWindow } from "./utils/createMainWindow.js";
+import { createPopupWindow } from "./utils/createPopupWindow.js";
+import { createTray } from "./utils/createTray.js";
+import { showNotification } from "./utils/showNotification.js";
 
 remote.initialize();
 
@@ -43,14 +41,14 @@ ipcMain.on("app_version", (event) => {
 	event.sender.send("app_version", { version: app.getVersion() });
 });
 
-autoUpdater.on("update-available", () => {
+electronUpdater.autoUpdater.on("update-available", () => {
 	config.mainWindow.webContents.send("update_available");
 });
 
-autoUpdater.on("update-downloaded", () => {
+electronUpdater.autoUpdater.on("update-downloaded", () => {
 	config.mainWindow.webContents.send("update_downloaded");
 });
 
 ipcMain.on("restart_app", () => {
-	autoUpdater.quitAndInstall();
+	electronUpdater.autoUpdater.quitAndInstall();
 });
